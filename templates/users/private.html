@@ -9,34 +9,19 @@
 			<h1>{{ user.name }}</h1>
 
 			{% if user.team_id %}
-				<div>
+				<h2>
 					<a href="{{ url_for('teams.private') }}">
-						<span class="pbadge pbadge-secondary">
+						<span class="badge badge-secondary">
 							{{ user.team.name }}
 						</span>
 					</a>
-				</div>
-			{% endif %}
-
-			{% if user.oauth_id %}
-				<a href="https://majorleaguecyber.org/u/{{ user.name }}">
-					<div><span class="pbadge pbadge-primary">Official</span></div>
-				</a>
+				</h2>
 			{% endif %}
 
 			{% if user.affiliation %}
-				<div class="d-inline-block">
-					<span class="pbadge pbadge-primary">{{ user.affiliation }}</span>
-				</div>
-			{% endif %}
-
-			{% if user.country %}
-				<div class="d-inline-block">
-					<span class="pbadge pbadge-primary">
-						<i class="flag-{{ user.country.lower() }}"></i>
-						{{ lookup_country_code(user.country) }}
-					</span>
-				</div>
+				<h3 class="d-inline-block">
+					<span class="badge badge-primary">{{ user.affiliation }}</span>
+				</h3>
 			{% endif %}
 
 			{% for field in user.fields %}
@@ -171,10 +156,10 @@
 			'account_id': 'me',
 		} | tojson }};
 	</script>
-	<script defer src="{{ url_for('views.themes', path='js/echarts.bundle.js') }}"></script>
-	<script defer src="{{ url_for('views.themes', path='js/graphs.js') }}"></script>
+	<script defer src="{{ url_for('views.themes', theme='core', path='js/echarts.bundle.js') }}"></script>
+	<script defer src="{{ url_for('views.themes', theme='core', path='js/graphs.js') }}"></script>
 {% endblock %}
 
 {% block entrypoint %}
-	<script defer src="{{ url_for('views.themes', path='js/pages/stats.js') }}"></script>
+	<script defer src="{{ url_for('views.themes', theme='core', path='js/pages/stats.js') }}"></script>
 {% endblock %}
